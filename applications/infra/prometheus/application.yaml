@@ -12,10 +12,9 @@ spec:
       helm:
         releaseName: prometheus
         valueFiles:
-          - $values/prometheus/values.yaml
+          - $values/applications/infra/prometheus/values.yaml
     - repoURL: https://github.com/rbomfimpro/gitops-owl.git
       targetRevision: HEAD
-      path: applications/infra
       ref: values
   destination:
     server: https://kubernetes.default.svc

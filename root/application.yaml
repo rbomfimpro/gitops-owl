@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: http://github.com/rbomfimpro/gitops-owl.git
+    repoURL: https://github.com/rbomfimpro/gitops-owl.git
     targetRevision: HEAD
     path: applications
     directory:
@@ -14,4 +14,3 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
-    
