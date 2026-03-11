@@ -1,0 +1,32 @@
+global:
+  domain: argocd.owl.localhost
+
+configs:
+  params:
+    server.insecure: true
+
+redis-ha:
+  enabled: true
+
+controller:
+  replicas: 1
+
+server:
+  replicas: 2
+
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+    extraTls:
+      - hosts:
+        - argocd.owl.localhost
+        secretName: owl-tls
+
+repoServer:
+  replicas: 2
+
+applicationSet:
+  replicas: 2
