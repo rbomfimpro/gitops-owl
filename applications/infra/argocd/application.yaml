@@ -12,10 +12,9 @@ spec:
       helm:
         releaseName: argocd
         valueFiles:
-          - $values/argocd/values.yaml
+          - $values/applications/infra/argocd/values.yaml
     - repoURL: https://github.com/rbomfimpro/gitops-owl.git
       targetRevision: HEAD
-      path: applications/infra
       ref: values
   destination:
     server: https://kubernetes.default.svc
