@@ -14,4 +14,5 @@ spec:
     namespace: workloads
   revisionHistoryLimit: 3
   syncPolicy:
-    automated: {}
+    automated:
+      enabled: true
