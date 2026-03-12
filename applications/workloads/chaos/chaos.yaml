@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chaos
+  namespace: workloads
+  labels:
+    app.kubernetes.io/name: chaos
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: chaos
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: chaos
+    spec:
+      containers:
+      - name: chaos
+        image: fabricioveronez/simulador-do-caos:v1
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          request:
+            cpu: 500m
+            memory: 512Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chaos
+  namespace: workloads
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: chaos
+  ports:
+  - port: 80
+    targetPort: 3000
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: chaos
+spec:
+  minReplicas: 1
+  maxReplicas: 10
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: chaos
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: chaos
+  namespace: workloads
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: chaos.owl.localhost
+      http:
+        paths:
+          - backend:
+              service:
+                name: chaos
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - chaos.owl.localhost
+      secretName: owl-tls
