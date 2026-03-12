@@ -18,3 +18,9 @@ spec:
       enabled: true
       prune: true
       selfHeal: true
+  ignoreDifferences:
+    - group: "apps"
+      kind: Deployment
+      name: chaos
+      jsonPointers:
+        - /spec/replicas
