@@ -12,7 +12,7 @@ spec:
       helm:
         releaseName: argocd
         valueFiles:
-          - $values/applications/infra/argocd/values.yaml
+          - $values/apps/infra/argocd/values.yaml
     - repoURL: https://github.com/rbomfimpro/gitops-owl.git
       targetRevision: HEAD
       ref: values

@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/rbomfimpro/gitops-owl.git
     targetRevision: HEAD
-    path: applications/workloads/chaos
+    path: apps/workloads/chaos
   destination:
     server: https://kubernetes.default.svc
     namespace: workloads

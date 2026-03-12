@@ -12,7 +12,7 @@ spec:
       helm:
         releaseName: prometheus
         valueFiles:
-          - $values/applications/infra/prometheus/values.yaml
+          - $values/apps/infra/prometheus/values.yaml
     - repoURL: https://github.com/rbomfimpro/gitops-owl.git
       targetRevision: HEAD
       ref: values
