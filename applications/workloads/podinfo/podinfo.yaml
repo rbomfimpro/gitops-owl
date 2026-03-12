@@ -42,17 +42,17 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: prometheus.owl.localhost
+    - host: podinfo.owl.localhost
       http:
         paths:
           - backend:
               service:
-                name: prometheus-server
+                name: podinfo
                 port:
                   number: 80
             path: /
             pathType: Prefix
   tls:
     - hosts:
-        - prometheus.owl.localhost
+        - podinfo.owl.localhost
       secretName: owl-tls
