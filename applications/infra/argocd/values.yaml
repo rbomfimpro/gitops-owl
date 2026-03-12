@@ -1,19 +1,14 @@
 global:
   domain: argocd.owl.localhost
-
 configs:
   params:
     server.insecure: true
-
 redis-ha:
   enabled: true
-
 controller:
   replicas: 1
-
 server:
   replicas: 2
-
   ingress:
     enabled: true
     ingressClassName: traefik
@@ -24,9 +19,7 @@ server:
       - hosts:
         - argocd.owl.localhost
         secretName: owl-tls
-
 repoServer:
   replicas: 2
-
 applicationSet:
   replicas: 2
