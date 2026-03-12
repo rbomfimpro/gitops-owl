@@ -10,5 +10,5 @@ spec:
     targetRevision: HEAD
     path: applications/workloads/podinfo
   destination:
-    server: http://kubernetes.default.svc
+    server: https://kubernetes.default.svc
     namespace: workloads
