@@ -12,5 +12,6 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: workloads
+  revisionHistoryLimit: 3
   syncPolicy:
     automated: {}
