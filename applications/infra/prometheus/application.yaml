@@ -29,3 +29,9 @@ spec:
       - PruneLast=true
       - ApplyOutOfSyncOnly=true
       - ServerSideApply=true
+      - RespectIgnoreDifferences=true
+  ignoreDifferences:
+    - group: apps
+      kind: StatefulSet
+      jsonPointers:
+        - /spec/volumeClaimTemplates
