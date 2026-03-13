@@ -31,7 +31,8 @@ spec:
       - ServerSideApply=true
       - RespectIgnoreDifferences=true
   ignoreDifferences:
-    - group: apps
+    - group: "apps"
       kind: StatefulSet
+      name: prometheus-alertmanager
       jsonPointers:
         - /spec/volumeClaimTemplates
