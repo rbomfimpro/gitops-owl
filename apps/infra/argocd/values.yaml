@@ -3,6 +3,8 @@ global:
 configs:
   params:
     server.insecure: true
+  cm:
+    timeout.reconciliation: 60s
 redis-ha:
   enabled: true
 controller:
