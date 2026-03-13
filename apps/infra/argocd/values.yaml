@@ -4,7 +4,7 @@ configs:
   params:
     server.insecure: true
   cm:
-    timeout.reconciliation: 60s
+    timeout.reconciliation: 120s
 redis-ha:
   enabled: true
 controller:
