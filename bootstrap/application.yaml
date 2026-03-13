@@ -19,3 +19,7 @@ spec:
       enabled: true
       prune: true
       selfHeal: true
+    syncOptions:
+      - PruneLast=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true
