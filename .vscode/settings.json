@@ -1,5 +1,0 @@
-{
-  "yaml.schemas": {
-    "https://www.schemastore.org/yamllint.json": "file:///Users/rbomfim/Documents/git/gitops-owl-v2/applications/prometheus.yaml"
-  }
-}
