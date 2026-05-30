@@ -7,7 +7,7 @@ spec:
     - name: traefik-gateway
       namespace: traefik
   hostnames:
-    - "prometeus.owl.localhost"
+    - "prometheus.owl.localhost"
   rules:
     - matches:
         - path:
