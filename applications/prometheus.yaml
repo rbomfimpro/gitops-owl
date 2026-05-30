@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://prometheus-community.github.io/helm-charts
+      chart: prometheus
+      targetRevision: 29.9.0
+      helm:
+        releaseName: prometheus
+        valuesFiles:
+          - $values/manifests/prometheus/values.yaml
+    - repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+      targetRevision: main
+      ref: values
+    - repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+      targetRevision: main
+      path: manifests/prometheus/extras
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring

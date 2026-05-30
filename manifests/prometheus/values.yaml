@@ -1,0 +1,3 @@
+scrapeConfigs:
+  kubernetes-pods-slow:
+    enabled: false
