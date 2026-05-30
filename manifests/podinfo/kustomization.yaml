@@ -16,7 +16,7 @@ replicas:
 images:
   - name: ghcr.io/stefanprodan/podinfo
     newName: ghcr.io/stefanprodan/podinfo
-    newTag: 6.12.1
+    newTag: 6.12.0
 
 # Labels
 labels:
