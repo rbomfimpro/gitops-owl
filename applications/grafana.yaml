@@ -12,7 +12,7 @@ spec:
     helm:
       releaseName: grafana
       valueFiles: 
-      - $values/manifests/grafana
+      - $values/manifests/grafana/values.yaml
   - repoURL: https://github.com/rbomfimpro/gitops-owl-v2
     targetRevision: main
     ref: values
