@@ -1,0 +1,35 @@
+global:
+  domain: argocd.owl.localhost
+
+configs:
+  params:
+    server.insecure: true
+
+server:
+  # HA mode with autoscaling
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+
+  # Gateway API HTTPRoute
+  httproute:
+    enabled: true
+    parentRefs:
+      - name: traefik-gateway
+        namespace: traefik
+        sectionName: websecure
+
+# HA mode with autoscaling
+redis-ha:
+  enabled: true
+
+controller:
+  replicas: 1
+
+repoServer:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+
+applicationSet:
+  replicas: 2
