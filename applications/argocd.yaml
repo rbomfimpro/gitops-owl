@@ -8,6 +8,7 @@ spec:
   sources:
     - repoURL: oci://ghcr.io/argoproj/argo-helm/argo-cd
       targetVersion: 9.5.17
+      path: .
       helm:
         releaseName: argocd
       valuesFiles:
