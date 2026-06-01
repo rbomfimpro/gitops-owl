@@ -7,14 +7,14 @@ spec:
   project: default
   sources:
     - repoURL: oci://ghcr.io/argoproj/argo-helm/argo-cd
-      targetVersion: 9.5.17
+      targetRevision: 9.5.17
       path: .
       helm:
         releaseName: argocd
       valuesFiles:
       - $values/manifests/argocd/values.yaml
     - repoURL: https://github.com/rbomfimpro/gitops-owl-v2
-      targetVersion: main
+      targetRevision: main
       ref: values
   destination:
     server: https://kubernetes.default.svc
