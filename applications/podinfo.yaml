@@ -9,6 +9,8 @@ spec:
     repoURL: https://github.com/rbomfimpro/gitops-owl-v2
     targetRevision: main
     path: manifests/podinfo
+  syncPolicy:
+    automated: {}
   destination:
     server: https://kubernetes.default.svc
     namespace: apps
