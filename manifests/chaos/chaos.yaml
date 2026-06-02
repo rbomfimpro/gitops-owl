@@ -24,7 +24,7 @@ spec:
             cpu: 200m
             memory: 256Mi
           limits:
-            cpu: 1000m
+            cpu: 200m
             memory: 512Mi
 ---
 apiVersion: v1
@@ -57,3 +57,22 @@ spec:
       backendRefs:
         - name: chaos
           port: 80
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: chaos
+spec:
+  maxReplicas: 10
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: chaos
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
