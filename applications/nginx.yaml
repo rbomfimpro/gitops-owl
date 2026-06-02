@@ -10,7 +10,8 @@ spec:
     targetRevision: main
     path: manifests/nginx
   syncPolicy:
-    automated: {}
+    automated:
+      prune: true
   destination:
     server: https://kubernetes.default.svc
     namespace: apps
