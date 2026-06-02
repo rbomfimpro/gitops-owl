@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/rbomfimpro/gitops-owl-v2
     targetRevision: main
-    path: manifest/nginx
+    path: manifests/nginx
   syncPolicy:
     automated: {}
   destination:
