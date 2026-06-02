@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx
+  namespace: argocd
+spec:
+  project: default
+  source:
+    - repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+      targetRevision: main
+      path: manifest/nginx
+  syncPolicy:
+    automated: {}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: apps
