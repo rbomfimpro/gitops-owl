@@ -14,17 +14,18 @@ spec:
       labels:
         app.kubernetes.io/name: nginx
     spec:
-    - name: nginx
-      containers: nginx:latest
-      ports:
-      - containerPort: 80
-      resources:
-        requests:
-          cpu: 20m
-          memory: 32Mi
-        limits:
-          cpu: 100m
-          memory: 64Mi
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 20m
+            memory: 32Mi
+          limits:
+            cpu: 100m
+            memory: 64Mi
 ---
 apiVersion: v1
 kind: Service
