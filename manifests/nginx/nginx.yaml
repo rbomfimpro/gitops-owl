@@ -54,6 +54,6 @@ spec:
         - path:
             type: PathPrefix
             value: /
-      backendRef:
+      backendRefs:
         - name: nginx
           port: 80
