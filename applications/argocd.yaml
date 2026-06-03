@@ -13,7 +13,7 @@ spec:
       path: .
       helm:
         releaseName: argocd
-      valuesFiles:
+      valueFiles:
       - $values/manifests/argocd/values.yaml
     - repoURL: https://github.com/rbomfimpro/gitops-owl-v2
       targetRevision: main
