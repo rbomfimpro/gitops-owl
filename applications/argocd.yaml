@@ -17,7 +17,14 @@ spec:
       targetRevision: main
       ref: values
   syncPolicy:
-    automated: {}  
+    automated:
+      prune: false
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - CreateNamespace=false
+      - ServerSideApply=true
+      - ServerSideDiff=true
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

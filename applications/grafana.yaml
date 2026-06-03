@@ -17,7 +17,14 @@ spec:
     targetRevision: main
     ref: values
   syncPolicy:
-    automated: {}
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - ServerSideDiff=true
+      - PruneLast=true
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring

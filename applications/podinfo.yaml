@@ -10,7 +10,14 @@ spec:
     targetRevision: main
     path: manifests/podinfo
   syncPolicy:
-    automated: {}
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - ServerSideDiff=true
+      - PruneLast=true
   destination:
     server: https://kubernetes.default.svc
     namespace: apps
