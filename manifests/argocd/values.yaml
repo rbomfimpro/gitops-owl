@@ -3,8 +3,8 @@ global:
 
 configs:
   params:
-    server.insecure: "true"
-    controller.diff.server.side: "true"
+    server.insecure: true
+    controller.diff.server.side: true
 
 server:
   # HA mode with autoscaling
