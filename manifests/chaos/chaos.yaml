@@ -20,11 +20,11 @@ spec:
         - containerPort: 3000
         resources:
           requests:
-            cpu: 150m
-            memory: 256Mi
+            cpu: 100m
+            memory: 128Mi
           limits:
             cpu: 150m
-            memory: 256Mi
+            memory: 192Mi
 ---
 apiVersion: v1
 kind: Service
@@ -71,7 +71,7 @@ spec:
   metrics:
   - type: Resource
     resource:
-      name: cpu
+      name: memory
       target:
         type: Utilization
-        averageUtilization: 50
+        averageUtilization: 60
