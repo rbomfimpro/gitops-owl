@@ -24,7 +24,6 @@ spec:
     syncOptions:
       - CreateNamespace=false
       - ServerSideApply=true
-      - ServerSideDiff=true
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

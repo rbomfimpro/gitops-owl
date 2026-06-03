@@ -16,7 +16,6 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
-      - ServerSideDiff=true
       - PruneLast=true
   destination:
     server: https://kubernetes.default.svc
