@@ -8,16 +8,16 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: https://github.com/rbomfimpro/gitops-owl-v2
-      targetRevision: main
-      ref: values
     - repoURL: oci://ghcr.io/argoproj/argo-helm/argo-cd
       targetRevision: 9.5.17
       path: .
       helm:
         releaseName: argocd
-      valueFiles:
-      - $values/manifests/argocd/values.yaml
+        valueFiles:
+          - $values/manifests/argocd/values.yaml
+    - repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+      targetRevision: main
+      ref: values
   syncPolicy:
     automated:
       prune: false
