@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kafka-ui
+  namespace: argocd
+spec:
+  project: default
+  sources:
+  - repoURL: https://ui.charts.kafbat.io/
+    chart: kafka-ui
+    targetRevision: 1.6.4
+    helm:
+      releaseName: kafka-ui
+      valueFiles:
+      - $values/manifests/kafka-ui/values.yaml
+  - repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+    targetRevision: main
+    ref: values
+  - repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+    targetRevision: main
+    path: manifests/kafka-ui/extras
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: apps

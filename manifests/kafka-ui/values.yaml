@@ -1,0 +1,26 @@
+replicaCount: 1
+
+env:
+  - name: DYNAMIC_CONFIG_ENABLED
+    value: "true"
+
+yamlApplicationConfig:
+  kafka:
+    clusters: []
+  auth:
+    type: disabled
+  management:
+    health:
+      ldap:
+        enabled: false
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 512Mi
+  limits:
+    memory: 1Gi
+
+service:
+  type: ClusterIP
+  port: 8080
