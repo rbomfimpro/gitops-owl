@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: workloads
+  namespace: argocd
+spec:
+  description: Company application workloads
+  sourceRepos:
+    - https://github.com/rbomfimpro/gitops-owl-v2.git
+    - https://github.com/rbomfimpro/k8s-apps-v3.git
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: apps
