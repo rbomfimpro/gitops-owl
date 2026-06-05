@@ -11,9 +11,7 @@ spec:
     - https://grafana-community.github.io/helm-charts/
   destinations:
     - server: https://kubernetes.default.svc
-      namespace: platform
-    - server: https://kubernetes.default.svc
-      namespace: monitoring
+      namespace: "*"
   clusterResourceWhitelist:
     - group: "*"
       kind: "*"
