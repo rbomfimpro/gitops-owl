@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: namespaces
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    - repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+      targetRevision: main
+      path: manifests/namespaces
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false
+      - ServerSideApply=true
+      - PruneLast=true
+  destination:
+    - server: https://kubernetes.default.svc
+      namespace: argocd
