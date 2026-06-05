@@ -11,3 +11,5 @@ spec:
   destinations:
     - server: https://kubernetes.default.svc
       namespace: platform
+    - server: https://kubernetes.default.svc
+      namespace: monitoring
