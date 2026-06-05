@@ -11,3 +11,39 @@ spec:
   destinations:
     - server: https://kubernetes.default.svc
       namespace: apps
+namespaceResourceWhitelist:
+  # core
+  - group: ""
+    kind: ConfigMap
+  - group: ""
+    kind: Secret
+  - group: ""
+    kind: Service
+  - group: ""
+    kind: ServiceAccount
+  - group: ""
+    kind: PersistentVolumeClaim
+  # apps
+  - group: apps
+    kind: DaemonSet
+  - group: apps
+    kind: Deployment
+  - group: apps
+    kind: StatefulSet
+  # batch
+  - group: batch
+    kind: Job
+  - group: batch
+    kind: CronJob
+  # scaling and distribution
+  - group: autoscaling
+    kind: HorizontalPodAutoscaler
+  - group: policy
+    kind: PodDisruptionBudget
+  # networking
+  - group: gateway.networking.k8s.io
+    kind: GRPCRoute
+  - group: gateway.networking.k8s.io
+    kind: HTTPRoute
+  - group: networking.k8s.io
+    kind: Ingress
