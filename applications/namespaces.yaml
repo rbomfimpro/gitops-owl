@@ -6,9 +6,9 @@ metadata:
 spec:
   project: platform
   source:
-    - repoURL: https://github.com/rbomfimpro/gitops-owl-v2
-      targetRevision: main
-      path: manifests/namespaces
+    repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+    targetRevision: main
+    path: manifests/namespaces
   syncPolicy:
     automated:
       prune: false
@@ -18,5 +18,5 @@ spec:
       - ServerSideApply=true
       - PruneLast=true
   destination:
-    - server: https://kubernetes.default.svc
-      namespace: argocd
+    server: https://kubernetes.default.svc
+    namespace: argocd
