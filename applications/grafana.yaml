@@ -4,7 +4,7 @@ metadata:
   name: grafana
   namespace: argocd
 spec:
-  project: default
+  project: platform
   sources:
   - repoURL: https://grafana-community.github.io/helm-charts/
     chart: grafana
