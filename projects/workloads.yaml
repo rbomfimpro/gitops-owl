@@ -16,7 +16,7 @@ spec:
       timeZone: "America/Sao_Paulo"
       schedule: '0 8 * * 1-5'
       duration: 14h
-      manualSync: false
+      manualSync: true
       applications:
         - '*'
   namespaceResourceWhitelist:
