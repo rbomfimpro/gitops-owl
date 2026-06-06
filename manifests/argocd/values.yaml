@@ -8,6 +8,7 @@ configs:
   cm:
     accounts.mercantil: login, apiKey
   rbac:
+    policy.default: role.readonly
     policy.csv: |
       g, mercantil, role:readonly
 
