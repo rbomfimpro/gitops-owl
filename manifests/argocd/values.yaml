@@ -7,6 +7,9 @@ configs:
     controller.diff.server.side: "true"
   cm:
     accounts.mercantil: login, apiKey
+  rbac:
+    policy.csv: |
+      g, mercantil, role:readonly
 
 server:
   # HA mode with autoscaling
