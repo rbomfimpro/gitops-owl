@@ -10,8 +10,9 @@ configs:
   rbac:
     policy.default: role.readonly
     policy.csv: |
-      g, mercantil, role:readonly
-
+      p, role:developer, applications, get, *, allow
+      g, mercantil, role:developer
+      
 server:
   # HA mode with autoscaling
   autoscaling:
