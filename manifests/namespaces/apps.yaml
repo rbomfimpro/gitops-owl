@@ -22,7 +22,7 @@ metadata:
   namespace: apps
 spec:
   limits:
-    - type: Container
+    - type: Pod
       defaultRequest:
         cpu: 10m
         memory: 16Mi
