@@ -4,7 +4,7 @@ metadata:
   name: kafka-ui
   namespace: argocd
 spec:
-  project: default
+  project: platform
   sources:
   - repoURL: https://ui.charts.kafbat.io/
     chart: kafka-ui
