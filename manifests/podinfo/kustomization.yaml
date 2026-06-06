@@ -10,7 +10,7 @@ resources:
 # Replicas
 replicas:
   - name: podinfo
-    count: 4
+    count: 5
 
 # Image
 images:
