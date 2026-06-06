@@ -23,12 +23,13 @@ metadata:
 spec:
   limits:
     - type: Pod
-      defaultRequest:
-        cpu: 10m
-        memory: 16Mi
       min:
         cpu: 10m
         memory: 16Mi
       max:
         cpu: 1
         memory: 1Gi
+    - type: Container
+      defaultRequest:
+        cpu: 10m
+        memory: 16Mi
