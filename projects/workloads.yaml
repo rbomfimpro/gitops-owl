@@ -31,11 +31,15 @@ spec:
       kind: "ServiceAccount"
     - group: ""
       kind: "PersistentVolumeClaim"
+    - group: ""
+      kind: "Pod"
     # apps
     - group: "apps"
       kind: "DaemonSet"
     - group: "apps"
       kind: "Deployment"
+    - group: "apps"
+      kind: "ReplicaSet"
     - group: "apps"
       kind: "StatefulSet"
     # batch
