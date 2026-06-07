@@ -25,9 +25,13 @@ configs:
       # =========================================================================
 
       # ---------- viewer: read-only, minimal (global baseline via policy.default) ----------
-      p, role:viewer, applications, get, */*, allow
-      p, role:viewer, logs,         get, */*, allow
-      p, role:viewer, clusters,     get, *,   allow
+      p, role:viewer, applications, get, */*,        allow
+      p, role:viewer, logs,         get, */*,        allow
+      p, role:viewer, clusters,     get, *,          allow
+      p, role:viewer, applications, get, platform/*, deny
+      p, role:viewer, logs,         get, platform/*, deny
+      p, role:viewer, applications, get, default/*,  deny
+      p, role:viewer, logs,         get, default/*,  deny
   
       # ---------- operator: operates apps across all projects + reads infra (does NOT reconfigure) ----------
       p, role:operator, applications,    get,      */*, allow
