@@ -63,5 +63,11 @@ spec:
         - p, proj:workloads:developer, applications, get,    workloads/*, allow
         - p, proj:workloads:developer, applications, sync,   workloads/*, allow
         - p, proj:workloads:developer, applications, update, workloads/*, allow
-      # groups:
-      #   - your-org:workloads-developers
+      groups:
+        # Local Users (No SSO)
+        - rbomfim
+        - gmendes
+        - rgaldino
+        # Service Accounts
+        - jenkins
+        # SSO Groups
