@@ -25,15 +25,23 @@ configs:
       # =========================================================================
 
       # ---------- viewer: read-only, minimal (global baseline via policy.default) ----------
+      # ALLOW
+      # Applications
       p, role:viewer, applications, get, */*,        allow
       p, role:viewer, logs,         get, */*,        allow
+      # Settings
       p, role:viewer, clusters,     get, *,          allow
+      p, role:viewer, projects,     get, *,          allow
+      # DENY
+      # Applications
       p, role:viewer, applications, get, platform/*, deny
       p, role:viewer, logs,         get, platform/*, deny
       p, role:viewer, applications, get, default/*,  deny
       p, role:viewer, logs,         get, default/*,  deny
   
-      # ---------- operator: operates apps across all projects + reads infra (does NOT reconfigure) ----------
+      # ---------- operator: operates apps across all projects (does NOT reconfigure) ----------
+      # ALLOW
+      # Applications
       p, role:operator, applications,    get,      */*, allow
       p, role:operator, applications,    update,   */*, allow
       p, role:operator, applications,    sync,     */*, allow
@@ -42,26 +50,31 @@ configs:
       p, role:operator, applicationsets, update,   */*, allow
       p, role:operator, logs,            get,      */*, allow
       p, role:operator, extensions,      invoke,   *,   allow
-      # infra read-only
+      # Settings
       p, role:operator, clusters,        get,      *,   allow
       p, role:operator, projects,        get,      *,   allow
       p, role:operator, repositories,    get,      *,   allow
       p, role:operator, certificates,    get,      *,   allow
       p, role:operator, gpgkeys,         get,      *,   allow
-      # no exec
+      # DENY
+      # Applications
       p, role:operator, exec,            create,   */*, deny
   
       # ---------- poweruser: full CRUD on resources, NO shell and NO account management ----------
+      # ALLOW
+      # Applications
       p, role:poweruser, applications,    *,      */*, allow
       p, role:poweruser, applicationsets, *,      */*, allow
+      p, role:poweruser, logs,            get,    */*, allow
+      p, role:poweruser, extensions,      invoke, *,   allow
+      # Settings
       p, role:poweruser, clusters,        *,      *,   allow
       p, role:poweruser, projects,        *,      *,   allow
       p, role:poweruser, repositories,    *,      *,   allow
       p, role:poweruser, certificates,    *,      *,   allow
       p, role:poweruser, gpgkeys,         *,      *,   allow
-      p, role:poweruser, logs,            get,    */*, allow
-      p, role:poweruser, extensions,      invoke, *,   allow
-      # no exec; account management stays admin-only
+      # DENY
+      # Applications
       p, role:poweruser, exec,            create, */*, deny
   
       # =========================================================================
