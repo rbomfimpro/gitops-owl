@@ -55,3 +55,13 @@ spec:
       kind: "HTTPRoute"
     - group: "networking.k8s.io"
       kind: "Ingress"
+
+  roles:
+    - name: developer
+      description: Workloads Team - operate this project's applications (no delete, no exec)
+      policies:
+        - p, proj:workloads:developer, applications, get,    workloads/*, allow
+        - p, proj:workloads:developer, applications, sync,   workloads/*, allow
+        - p, proj:workloads:developer, applications, update, workloads/*, allow
+      # groups:
+      #   - your-org:workloads-developers

@@ -8,12 +8,74 @@ configs:
   cm:
     accounts.mercantil: login, apiKey
   rbac:
-    policy.default: role.readonly
+    policy.default: role:viewer
     policy.csv: |
-      p, role:developer, applications, get, *, allow
-      p, role:developer, applications, sync, *, allow
-      g, mercantil, role:developer
-      
+      # =========================================================================
+      # GLOBAL CUSTOM ROLES
+      # Syntax: p, <role>, <resource>, <action>, <object>, <effect>
+      # Object for applications/logs = <project>/<app>  (e.g. workloads/api)
+      # =========================================================================
+   
+      # =========================================================================
+      # BUILT-IN ROLES
+      # role:admin, role:readonly
+      # =========================================================================
+
+      # ---------- viewer: read-only, minimal (global baseline via policy.default) ----------
+      p, role:viewer, applications, get, */*, allow
+      p, role:viewer, logs,         get, */*, allow
+      p, role:viewer, clusters,     get, *,   allow
+  
+      # ---------- operator: operates apps across all projects + reads infra (does NOT reconfigure) ----------
+      p, role:operator, applications,    get,      */*, allow
+      p, role:operator, applications,    update,   */*, allow
+      p, role:operator, applications,    sync,     */*, allow
+      p, role:operator, applications,    override, */*, allow
+      p, role:operator, applicationsets, get,      */*, allow
+      p, role:operator, applicationsets, update,   */*, allow
+      p, role:operator, logs,            get,      */*, allow
+      p, role:operator, extensions,      invoke,   *,   allow
+      # infra read-only
+      p, role:operator, clusters,        get,      *,   allow
+      p, role:operator, projects,        get,      *,   allow
+      p, role:operator, repositories,    get,      *,   allow
+      p, role:operator, certificates,    get,      *,   allow
+      p, role:operator, gpgkeys,         get,      *,   allow
+      # no exec
+      p, role:operator, exec,            create,   */*, deny
+  
+      # ---------- poweruser: full CRUD on resources, NO shell and NO account management ----------
+      p, role:poweruser, applications,    *,      */*, allow
+      p, role:poweruser, applicationsets, *,      */*, allow
+      p, role:poweruser, clusters,        *,      *,   allow
+      p, role:poweruser, projects,        *,      *,   allow
+      p, role:poweruser, repositories,    *,      *,   allow
+      p, role:poweruser, certificates,    *,      *,   allow
+      p, role:poweruser, gpgkeys,         *,      *,   allow
+      p, role:poweruser, logs,            get,    */*, allow
+      p, role:poweruser, extensions,      invoke, *,   allow
+      # no exec; account management stays admin-only
+      p, role:poweruser, exec,            create, */*, deny
+  
+      # =========================================================================
+      # SSO/OIDC GROUP -> GLOBAL ROLE MAPPING
+      # (Per-project "developer" groups are bound inside each AppProject manifest.)
+      # =========================================================================
+      # SAMPLES
+      # g, your-org:platform-engineers, role:poweruser
+      # g, your-org:sre,                role:operator
+      # g, your-org:staff,              role:viewer
+  
+      # =========================================================================
+      # LOCAL USER -> ROLE BINDINGS (no SSO yet)
+      # Local users have no group claim, so they are bound here by username.
+      # Project-scoped roles are referenced as proj:<project>:<role>.
+      # When SSO lands: drop these lines and bind the IdP group inside the
+      # AppProject's .spec.roles[].groups instead.
+      # =========================================================================
+      # SAMPLES
+      # g, rgaldino, proj:workloads:developer
+      # g, gmendes,  proj:workloads:developer
 server:
   # HA mode with autoscaling
   autoscaling:
