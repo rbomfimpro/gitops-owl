@@ -74,8 +74,8 @@ configs:
       # AppProject's .spec.roles[].groups instead.
       # =========================================================================
       # SAMPLES
-      # g, rgaldino, proj:workloads:developer
-      # g, gmendes,  proj:workloads:developer
+      # g, rbomfim, proj:mercantil:developer
+      # g, pmendes, proj:warriors:developer
 server:
   # HA mode with autoscaling
   autoscaling:
