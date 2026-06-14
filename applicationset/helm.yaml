@@ -41,7 +41,7 @@ spec:
     spec:
       syncPolicy:
         automated:
-          prune: '{{ .prune | default true }}'
+          prune: {{ .prune | default true }}
           selfHeal: true
           allowEmpty: false
         syncOptions:
