@@ -14,8 +14,9 @@ spec:
     - repoURL: https://github.com/rbomfimpro/gitops-owl-v2
       targetRevision: main
       path: applicationset
-      directory:
-        recurse: true
+    - repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+      targetRevision: main
+      path: projects
   syncPolicy:
     automated:
       prune: true
