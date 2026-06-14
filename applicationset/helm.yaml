@@ -13,6 +13,12 @@ spec:
             chartURL: oci://ghcr.io/stefanprodan/charts/podinfo
             chartVersion: "6.13.0"
             namespace: apps
+          - releaseName: grafanav2
+            project: platform
+            chartURL: https://grafana-community.github.io/helm-charts/
+            chartName: grafana
+            chartVersion: "12.4.5"
+            namespace: apps
   template:
     metadata:
       name: '{{ .releaseName }}'
