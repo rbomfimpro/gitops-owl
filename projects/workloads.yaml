@@ -14,14 +14,14 @@ spec:
   destinations:
     - server: https://kubernetes.default.svc
       namespace: apps
-  syncWindows:
-    - kind: allow
-      timeZone: "America/Sao_Paulo"
-      schedule: '0 8 * * 1-5'
-      duration: 14h
-      manualSync: true
-      applications:
-        - '*'
+  # syncWindows:
+  #   - kind: allow
+  #     timeZone: "America/Sao_Paulo"
+  #     schedule: '0 8 * * 1-5'
+  #     duration: 14h
+  #     manualSync: true
+  #     applications:
+  #       - '*'
   namespaceResourceWhitelist:
     # core
     - group: ""
