@@ -1,0 +1,50 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: helm
+  namespace: argocd
+spec:
+  goTemplate: true
+  generators:
+    - list:
+        elements:
+          - releaseName: podinfov1
+            project: workloads
+            chartURL: oci://ghcr.io/stefanprodan/charts/podinfo
+            chartVersion: "6.13.0"
+            namespace: workloads
+  template:
+    metadata:
+      name: '{{ .releaseName }}'
+      namespace: argocd
+    spec:
+      project: '{{ .project }}'
+      sources:
+        - repoURL: '{{ .chartURL }}'
+          chart: '{{ .chartName | default "" }}'
+          targetRevision: '{{ .chartVersion }}'
+          path: .
+          helm:
+            releaseName: '{{ .releaseName }}'
+            valueFiles:
+              - $values/manifests/{{ .releaseName }}/values.yaml
+        - repoURL: '{{ .repoURL | default "https://github.com/rbomfimpro/gitops-owl-v2" }}'
+          targetRevision: '{{ .targetRevision | default "main" }}'
+          ref: values
+        - repoURL: '{{ .repoURL | default "https://github.com/rbomfimpro/gitops-owl-v2" }}'
+          targetRevision: '{{ .targetRevision | default "main" }}'
+          path: manifests/{{ .releaseName }}/extras
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{ .namespace }}'
+  templatePatch: |
+    spec:
+      syncPolicy:
+        automated:
+          prune: '{{ .prune | default true }}'
+          selfHeal: true
+          allowEmpty: false
+        syncOptions:
+          - 'CreateNamespace={{ .createNamespace | default true }}'
+          - ServerSideApply=true
+          - 'PruneLast={{ .pruneLast | default true }}'
