@@ -37,9 +37,9 @@ spec:
         - repoURL: '{{ .repoURL | default "https://github.com/rbomfimpro/gitops-owl-v2" }}'
           targetRevision: '{{ .targetRevision | default "main" }}'
           ref: values
-        - repoURL: '{{ .repoURL | default "https://github.com/rbomfimpro/gitops-owl-v2" }}'
-          targetRevision: '{{ .targetRevision | default "main" }}'
-          path: manifests/{{ .releaseName }}/extras
+          path: manifests/{{ .releaseName }}
+          directory:
+            exclude: values.yaml
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{ .namespace }}'
