@@ -1,24 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: helm
+  name: helm-charts
   namespace: argocd
 spec:
   goTemplate: true
   generators:
+    - git:
+        repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+        revision: main
+        files:
+          - path: applicationsets/apps/charts.yaml
     - list:
-        elements:
-          - releaseName: podinfov1
-            project: workloads
-            chartURL: oci://ghcr.io/stefanprodan/charts/podinfo
-            chartVersion: "6.13.0"
-            namespace: apps
-          - releaseName: grafanav2
-            project: platform
-            chartURL: https://grafana-community.github.io/helm-charts/
-            chartName: grafana
-            chartVersion: "12.4.5"
-            namespace: apps
+        elementsYaml: "{{ .charts | toJson }}"
   template:
     metadata:
       name: '{{ .releaseName }}'
