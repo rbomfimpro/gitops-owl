@@ -5,12 +5,17 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://github.com/rbomfimpro/gitops-owl-v2
-    targetRevision: main
-    path: applications
-    directory:
-      recurse: true
+  sources:
+    - repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+      targetRevision: main
+      path: applications
+      directory:
+        recurse: true
+    - repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+      targetRevision: main
+      path: applicationset
+      directory:
+        recurse: true
   syncPolicy:
     automated:
       prune: true
