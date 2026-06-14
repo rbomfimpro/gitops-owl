@@ -12,7 +12,7 @@ spec:
             project: workloads
             chartURL: oci://ghcr.io/stefanprodan/charts/podinfo
             chartVersion: "6.13.0"
-            namespace: workloads
+            namespace: apps
   template:
     metadata:
       name: '{{ .releaseName }}'
