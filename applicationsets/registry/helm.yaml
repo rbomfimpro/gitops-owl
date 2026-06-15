@@ -22,3 +22,9 @@ applications:
     chartURL: oci://ghcr.io/stefanprodan/charts/podinfo
     chartVersion: "6.13.0"
     namespace: apps
+  - name: argo-rollouts
+    project: platform
+    chartURL: https://argoproj.github.io/argo-helm
+    chartName: argo-rollouts
+    chartVersion: "2.41.0"
+    namespace: platform

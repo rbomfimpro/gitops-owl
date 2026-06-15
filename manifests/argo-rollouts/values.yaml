@@ -1,0 +1,19 @@
+extraObjects:
+  - apiVersion: gateway.networking.k8s.io/v1
+    kind: HTTPRoute
+    metadata:
+      name: argo-rollouts
+    spec:
+      parentRefs:
+        - name: traefik-gateway
+          namespace: traefik
+      hostnames:
+        - "argo-rollouts.owl.localhost"
+      rules:
+        - matches:
+            - path:
+                type: PathPrefix
+                value: /
+          backendRefs:
+            - name: argo-rollouts-dashboard
+              port: 3100
