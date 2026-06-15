@@ -1,4 +1,4 @@
-elements:
+applications:
   - name: chaos
     project: workloads
     namespace: apps

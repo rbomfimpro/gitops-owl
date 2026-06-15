@@ -14,7 +14,7 @@ spec:
               files:
                 - path: applicationsets/registry/kustomize.yaml
           - list:
-              elementsYaml: "{{ .elements | toJson }}"
+              elementsYaml: "{{ .applications | toJson }}"
   template:
     metadata:
       name: '{{ .name }}'

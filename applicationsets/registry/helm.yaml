@@ -1,4 +1,4 @@
-elements:
+applications:
   - name: grafana
     project: platform
     chartURL: https://grafana-community.github.io/helm-charts/
@@ -17,3 +17,9 @@ elements:
     chartName: prometheus
     chartVersion: "29.9.0"
     namespace: monitoring
+  - name: podinfov2
+    project: workloads
+    chartURL: oci://ghcr.io/stefanprodan/charts
+    chartName: podinfo
+    chartVersion: "6.13.0"
+    namespace: apps

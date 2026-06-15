@@ -14,7 +14,7 @@ spec:
               files:
                 - path: applicationsets/registry/helm.yaml
           - list:
-              elementsYaml: "{{ .elements | toJson }}"
+              elementsYaml: "{{ .applications | toJson }}"
   template:
     metadata:
       name: '{{ .name }}'
@@ -23,9 +23,8 @@ spec:
       project: '{{ .project }}'
       sources:
         - repoURL: '{{ .chartURL }}'
-          chart: '{{ .chartName | default "" }}'
+          chart: '{{ .chartName }}'
           targetRevision: '{{ .chartVersion }}'
-          path: .
           helm:
             releaseName: '{{ .releaseName | default .name }}'
             valueFiles:

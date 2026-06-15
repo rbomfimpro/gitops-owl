@@ -1,4 +1,4 @@
-elements:
+applications:
   - name: podinfo
     project: workloads
     namespace: apps
