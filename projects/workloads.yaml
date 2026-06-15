@@ -10,8 +10,7 @@ spec:
   sourceRepos:
     - https://github.com/rbomfimpro/gitops-owl-v2.git
     - https://github.com/rbomfimpro/k8s-apps-v3.git
-    - oci://ghcr.io/stefanprodan/charts
-    - ghcr.io/stefanprodan/charts
+    - oci://ghcr.io/stefanprodan/charts/podinfo
   destinations:
     - server: https://kubernetes.default.svc
       namespace: apps

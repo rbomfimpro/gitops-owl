@@ -19,7 +19,6 @@ applications:
     namespace: monitoring
   - name: podinfov2
     project: workloads
-    chartURL: ghcr.io/stefanprodan/charts
-    chartName: podinfo
+    chartURL: oci://ghcr.io/stefanprodan/charts/podinfo
     chartVersion: "6.13.0"
     namespace: apps

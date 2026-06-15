@@ -23,8 +23,9 @@ spec:
       project: '{{ .project }}'
       sources:
         - repoURL: '{{ .chartURL }}'
-          chart: '{{ .chartName }}'
+          chart: '{{ .chartName | default "" }}'
           targetRevision: '{{ .chartVersion }}'
+          path: .
           helm:
             releaseName: '{{ .releaseName | default .name }}'
             valueFiles:
