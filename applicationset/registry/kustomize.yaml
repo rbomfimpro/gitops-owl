@@ -1,0 +1,4 @@
+elements:
+  - name: podinfo
+    project: workloads
+    namespace: apps

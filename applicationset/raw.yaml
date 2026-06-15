@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: raw
+  namespace: argocd
+spec:
+  goTemplate: true
+  generators:
+    - git:
+        repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+        revision: main
+        files:
+          - path: applicationsets/registry/raw.yaml
+    - list:
+        elementsYaml: "{{ .elements | toJson }}"
+  template:
+    metadata:
+      name: '{{ .name }}'
+      namespace: argocd
+    spec:
+      project: '{{ .project }}'
+      source:
+        repoURL: '{{ .repoURL | default "https://github.com/rbomfimpro/gitops-owl-v2" }}'
+        targetRevision: '{{ .targetRevision | default "main" }}'
+        path: manifests/{{ .name }}
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{ .namespace }}'
+  templatePatch: |
+    spec:
+      syncPolicy:
+        automated:
+          prune: {{ .prune | default true }}
+          selfHeal: true
+          allowEmpty: false
+        syncOptions:
+          - 'CreateNamespace={{ .createNamespace | default true }}'
+          - ServerSideApply=true
+          - 'PruneLast={{ .pruneLast | default true }}'

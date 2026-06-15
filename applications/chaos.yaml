@@ -1,22 +1,22 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: chaos
-  namespace: argocd
-spec:
-  project: workloads
-  source:
-    repoURL: https://github.com/rbomfimpro/gitops-owl-v2
-    targetRevision: main
-    path: manifests/chaos
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
-      - ServerSideApply=true
-      - PruneLast=true
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: apps
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: chaos
+#   namespace: argocd
+# spec:
+#   project: workloads
+#   source:
+#     repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+#     targetRevision: main
+#     path: manifests/chaos
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
+#       - ServerSideApply=true
+#       - PruneLast=true
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: apps

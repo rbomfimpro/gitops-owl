@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: helm-charts
+  name: helm
   namespace: argocd
 spec:
   goTemplate: true
@@ -10,9 +10,9 @@ spec:
         repoURL: https://github.com/rbomfimpro/gitops-owl-v2
         revision: main
         files:
-          - path: applicationsets/apps/charts.yaml
+          - path: applicationsets/registry/helm.yaml
     - list:
-        elementsYaml: "{{ .charts | toJson }}"
+        elementsYaml: "{{ .elements | toJson }}"
   template:
     metadata:
       name: '{{ .releaseName }}'

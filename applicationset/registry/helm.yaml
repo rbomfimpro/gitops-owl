@@ -1,4 +1,4 @@
-charts:
+elements:
   - releaseName: podinfov1
     project: workloads
     chartURL: oci://ghcr.io/stefanprodan/charts/podinfo
