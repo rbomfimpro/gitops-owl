@@ -39,3 +39,6 @@ spec:
           - 'CreateNamespace={{ .createNamespace | default true }}'
           - ServerSideApply=true
           - 'PruneLast={{ .pruneLast | default true }}'
+      {{- if .ignoreDifferences }}
+      ignoreDifferences: {{ .ignoreDifferences | toJson }}
+      {{- end }}
