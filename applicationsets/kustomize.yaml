@@ -9,7 +9,7 @@ spec:
     - matrix:
         generators:
           - git:
-              repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+              repoURL: https://github.com/rbomfimpro/gitops-owl
               revision: main
               files:
                 - path: applicationsets/registry/kustomize.yaml
@@ -22,7 +22,7 @@ spec:
     spec:
       project: '{{ .project }}'
       source:
-        repoURL: '{{ .repoURL | default "https://github.com/rbomfimpro/gitops-owl-v2" }}'
+        repoURL: '{{ .repoURL | default "https://github.com/rbomfimpro/gitops-owl" }}'
         targetRevision: '{{ .targetRevision | default "main" }}'
         path: manifests/{{ .name }}
       destination:

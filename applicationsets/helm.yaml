@@ -9,7 +9,7 @@ spec:
     - matrix:
         generators:
           - git:
-              repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+              repoURL: https://github.com/rbomfimpro/gitops-owl
               revision: main
               files:
                 - path: applicationsets/registry/helm.yaml
@@ -30,7 +30,7 @@ spec:
             releaseName: '{{ .releaseName | default .name }}'
             valueFiles:
               - $values/manifests/{{ .name }}/values.yaml
-        - repoURL: '{{ .repoURL | default "https://github.com/rbomfimpro/gitops-owl-v2" }}'
+        - repoURL: '{{ .repoURL | default "https://github.com/rbomfimpro/gitops-owl" }}'
           targetRevision: '{{ .targetRevision | default "main" }}'
           ref: values
           path: manifests/{{ .name }}

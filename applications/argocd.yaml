@@ -13,7 +13,7 @@ spec:
         releaseName: argocd
         valueFiles:
           - $values/manifests/argocd/values.yaml
-    - repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+    - repoURL: https://github.com/rbomfimpro/gitops-owl
       targetRevision: main
       ref: values
   syncPolicy:

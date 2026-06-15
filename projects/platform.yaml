@@ -8,13 +8,14 @@ metadata:
 spec:
   description: Cluster platform and infrastructure components
   sourceRepos:
-    - https://github.com/rbomfimpro/gitops-owl-v2.git
+    - https://github.com/rbomfimpro/gitops-owl.git
     - https://github.com/rbomfimpro/k8s-apps-v3.git
     - https://grafana-community.github.io/helm-charts/
     - https://ui.charts.kafbat.io/
     - https://prometheus-community.github.io/helm-charts
     - oci://ghcr.io/argoproj/argo-helm/argo-cd
     - oci://ghcr.io/stefanprodan/charts/podinfo
+    - https://argoproj.github.io/argo-helm
   destinations:
     - server: https://kubernetes.default.svc
       namespace: "*"

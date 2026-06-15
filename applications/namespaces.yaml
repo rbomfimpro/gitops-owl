@@ -8,7 +8,7 @@ metadata:
 spec:
   project: platform
   source:
-    repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+    repoURL: https://github.com/rbomfimpro/gitops-owl
     targetRevision: main
     path: manifests/namespaces
   syncPolicy:
