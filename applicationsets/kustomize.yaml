@@ -6,13 +6,15 @@ metadata:
 spec:
   goTemplate: true
   generators:
-    - git:
-        repoURL: https://github.com/rbomfimpro/gitops-owl-v2
-        revision: main
-        files:
-          - path: applicationsets/registry/kustomize.yaml
-    - list:
-        elementsYaml: "{{ .elements | toJson }}"
+    - matrix:
+        generators:
+          - git:
+              repoURL: https://github.com/rbomfimpro/gitops-owl-v2
+              revision: main
+              files:
+                - path: applicationsets/registry/kustomize.yaml
+          - list:
+              elementsYaml: "{{ .elements | toJson }}"
   template:
     metadata:
       name: '{{ .name }}'
