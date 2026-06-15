@@ -17,7 +17,7 @@ spec:
               elementsYaml: "{{ .elements | toJson }}"
   template:
     metadata:
-      name: '{{ .releaseName }}'
+      name: '{{ .name }}'
       namespace: argocd
     spec:
       project: '{{ .project }}'
@@ -27,13 +27,13 @@ spec:
           targetRevision: '{{ .chartVersion }}'
           path: .
           helm:
-            releaseName: '{{ .releaseName }}'
+            releaseName: '{{ .releaseName | default .name }}'
             valueFiles:
-              - $values/manifests/{{ .releaseName }}/values.yaml
+              - $values/manifests/{{ .name }}/values.yaml
         - repoURL: '{{ .repoURL | default "https://github.com/rbomfimpro/gitops-owl-v2" }}'
           targetRevision: '{{ .targetRevision | default "main" }}'
           ref: values
-          path: manifests/{{ .releaseName }}
+          path: manifests/{{ .name }}
           directory:
             exclude: values.yaml
       destination:

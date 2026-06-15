@@ -2,3 +2,6 @@ elements:
   - name: chaos
     project: workloads
     namespace: apps
+  - name: nginx
+    project: workloads
+    namespace: apps

@@ -1,12 +1,19 @@
 elements:
-  - releaseName: podinfov1
-    project: workloads
-    chartURL: oci://ghcr.io/stefanprodan/charts/podinfo
-    chartVersion: "6.13.0"
-    namespace: apps
-  - releaseName: grafanav2
+  - name: grafana
     project: platform
     chartURL: https://grafana-community.github.io/helm-charts/
     chartName: grafana
     chartVersion: "12.4.5"
-    namespace: apps
+    namespace: monitoring
+  - name: kafka-ui
+    project: platform
+    chartURL: https://ui.charts.kafbat.io/
+    chartName: kafka-ui
+    chartVersion: "1.6.4"
+    namespace: platform
+  - name: prometheus
+    project: platform
+    chartURL: https://prometheus-community.github.io/helm-charts
+    chartName: prometheus
+    chartVersion: "29.9.0"
+    namespace: monitoring
