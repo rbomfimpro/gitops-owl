@@ -12,7 +12,7 @@ spec:
         files:
           - path: applicationsets/registry/helm.yaml
     - list:
-        elementsYaml: "{{ .elements | toJson }}"
+        elementsYaml: "{{ .list | toJson }}"
   template:
     metadata:
       name: '{{ .releaseName }}'
