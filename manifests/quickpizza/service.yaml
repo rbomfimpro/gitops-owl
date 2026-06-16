@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: quickpizza
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: quickpizza
+  ports:
+  - port: 80
+    targetPort: 3333
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quickpizza-preview
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: quickpizza
+  ports:
+  - port: 80
+    targetPort: 3333

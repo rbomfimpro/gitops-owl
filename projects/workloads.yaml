@@ -46,6 +46,9 @@ spec:
       kind: "ReplicaSet"
     - group: "apps"
       kind: "StatefulSet"
+    # argoproj.io
+    - group: "argoproj.io"
+      kind: "Rollout"
     # batch
     - group: "batch"
       kind: "Job"

@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: quickpizza
+  labels:
+    app.kubernetes.io/name: quickpizza
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: quickpizza
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: quickpizza
+    spec:
+      containers:
+        - name: quickpizza
+          image: ghcr.io/grafana/quickpizza-local:0.15.7
+          ports:
+            - containerPort: 3333
+          resources:
+            limits:
+              cpu: 100m
+              memory: 64Mi
+            requests:
+              cpu: 20m
+              memory: 32Mi
+      minReadySeconds: 10
+      strategy:
+        blueGreen:
+          activeService: quickpizza
+          previewService: quickpizza-preview
+          autoPromotionEnabled: false
+          autoPromotionSeconds: 60
+          scaleDownDelaySeconds: 120

@@ -5,3 +5,6 @@ applications:
   - name: nginx
     project: workloads
     namespace: apps
+  - name: quickpizza
+    project: workloads
+    namespace: apps
