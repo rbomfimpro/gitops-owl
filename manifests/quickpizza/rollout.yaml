@@ -21,11 +21,11 @@ spec:
             - containerPort: 3333
           resources:
             limits:
-              cpu: 100m
-              memory: 64Mi
+              cpu: 200m
+              memory: 256Mi
             requests:
-              cpu: 20m
-              memory: 32Mi
+              cpu: 50m
+              memory: 128Mi
   minReadySeconds: 10
   strategy:
     blueGreen:
