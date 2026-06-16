@@ -26,11 +26,11 @@ spec:
             requests:
               cpu: 20m
               memory: 32Mi
-      minReadySeconds: 10
-      strategy:
-        blueGreen:
-          activeService: quickpizza
-          previewService: quickpizza-preview
-          autoPromotionEnabled: false
-          autoPromotionSeconds: 60
-          scaleDownDelaySeconds: 120
+  minReadySeconds: 10
+  strategy:
+    blueGreen:
+      activeService: quickpizza
+      previewService: quickpizza-preview
+      autoPromotionEnabled: false
+      autoPromotionSeconds: 60
+      scaleDownDelaySeconds: 120
