@@ -5,6 +5,9 @@ metadata:
   namespace: argocd
 spec:
   project: workloads
+  info:
+    - name: version
+      value: 6.10.0
   source:
     repoURL: https://github.com/rbomfimpro/gitops-owl
     targetRevision: main
