@@ -9,6 +9,9 @@ spec:
     repoURL: https://github.com/rbomfimpro/gitops-owl
     targetRevision: main
     path: manifests/podinfo
+    kustomize:
+      images:
+        - ghcr.io/stefanprodan/podinfo:6.10.0
   syncPolicy:
     automated:
       prune: true
