@@ -17,11 +17,6 @@ applications:
     chartName: prometheus
     chartVersion: "29.9.0"
     namespace: monitoring
-  - name: podinfov2
-    project: workloads
-    chartURL: oci://ghcr.io/stefanprodan/charts/podinfo
-    chartVersion: "6.13.0"
-    namespace: apps
   - name: argo-rollouts
     project: platform
     chartURL: https://argoproj.github.io/argo-helm

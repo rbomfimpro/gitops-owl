@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: podinfo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernets.io/name: podinfo
+  template:
+    metadata:
+      labels:
+        app.kubernets.io/name: podinfo
+    spec:
+      containers:
+      - name: podinfo
+        image: ghcr.io/stefanprodan/podinfo:6.10.0
+        ports:
+        - containerPort: 9898
+        resources:
+          requests:
+            cpu: 20m
+            memory: 32Mi
+          limits:
+            cpu: 100m
+            memory: 48Mi
+  minReadySeconds: 30
+  strategy:
+    blueGreen:
+      activeService: podinfo
+      previewService: podinfo-preview
+      autoPromotionEnabled: false
+      autoPromotionSeconds: 120
+      scaleDownDelaySeconds: 60
