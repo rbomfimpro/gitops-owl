@@ -22,6 +22,11 @@ spec:
       - CreateNamespace=true
       - ServerSideApply=true
       - PruneLast=true
+  ignoreDifferences:
+    - group: ""
+      kind: Service
+      managedFieldsManagers:
+        - argo-rollouts
   destination:
     server: https://kubernetes.default.svc
     namespace: apps
