@@ -3,11 +3,10 @@ kind: Application
 metadata:
   name: podinfo
   namespace: argocd
+  labels:
+    version: 6.10.0
 spec:
   project: workloads
-  info:
-    - name: version
-      value: 6.10.0
   source:
     repoURL: https://github.com/rbomfimpro/gitops-owl
     targetRevision: main
