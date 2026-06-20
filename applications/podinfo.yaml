@@ -13,7 +13,7 @@ spec:
     path: manifests/podinfo
     kustomize:
       images:
-        - ghcr.io/stefanprodan/podinfo:6.10.1
+        - ghcr.io/stefanprodan/podinfo:6.10.2
   syncPolicy:
     automated:
       prune: true
