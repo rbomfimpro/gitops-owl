@@ -6,11 +6,11 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app.kubernets.io/name: podinfo
+      app.kubernetes.io/name: podinfo
   template:
     metadata:
       labels:
-        app.kubernets.io/name: podinfo
+        app.kubernetes.io/name: podinfo
     spec:
       containers:
       - name: podinfo
@@ -30,5 +30,4 @@ spec:
       activeService: podinfo
       previewService: podinfo-preview
       autoPromotionEnabled: false
-      autoPromotionSeconds: 120
       scaleDownDelaySeconds: 60

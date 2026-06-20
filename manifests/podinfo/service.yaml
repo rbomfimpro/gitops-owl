@@ -5,7 +5,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app.kubernets.io/name: podinfo
+    app.kubernetes.io/name: podinfo
   ports:
   - port: 80
     targetPort: 9898
@@ -17,7 +17,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app.kubernets.io/name: podinfo
+    app.kubernetes.io/name: podinfo
   ports:
   - port: 80
     targetPort: 9898
