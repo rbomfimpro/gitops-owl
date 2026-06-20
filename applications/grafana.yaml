@@ -1,30 +1,30 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: grafana
   namespace: argocd
 spec:
   project: platform
   sources:
-    - repoURL: oci://ghcr.io/argoproj/argo-helm/argo-cd
-      targetRevision: 9.5.17
-      path: .
+    - repoURL: https://argoproj.github.io/argo-helm
+      chart: grafana
+      targetRevision: 12.4.5
       helm:
-        releaseName: argocd
+        releaseName: grafana
         valueFiles:
-          - $values/manifests/argocd/values.yaml
+          - $values/manifests/grafana/values.yaml
     - repoURL: https://github.com/rbomfimpro/gitops-owl
       targetRevision: main
       ref: values
-      path: manifests/argocd
+      path: manifests/grafana
   syncPolicy:
     automated:
-      prune: false
+      prune: true
       selfHeal: true
-      allowEmpty: false
     syncOptions:
-      - CreateNamespace=false
+      - CreateNamespace=true
       - ServerSideApply=true
+      - PruneLast=true
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: monitoring

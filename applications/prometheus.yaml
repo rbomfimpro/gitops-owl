@@ -1,30 +1,30 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: prometheus
   namespace: argocd
 spec:
   project: platform
   sources:
-    - repoURL: oci://ghcr.io/argoproj/argo-helm/argo-cd
-      targetRevision: 9.5.17
-      path: .
+    - repoURL: https://prometheus-community.github.io/helm-charts
+      chart: prometheus
+      targetRevision: 29.9.0
       helm:
-        releaseName: argocd
+        releaseName: prometheus
         valueFiles:
-          - $values/manifests/argocd/values.yaml
+          - $values/manifests/prometheus/values.yaml
     - repoURL: https://github.com/rbomfimpro/gitops-owl
       targetRevision: main
       ref: values
-      path: manifests/argocd
+      path: manifests/prometheus
   syncPolicy:
     automated:
-      prune: false
+      prune: true
       selfHeal: true
-      allowEmpty: false
     syncOptions:
-      - CreateNamespace=false
+      - CreateNamespace=true
       - ServerSideApply=true
+      - PruneLast=true
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: monitoring

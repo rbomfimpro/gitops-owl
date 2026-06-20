@@ -1,30 +1,30 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: argo-rollouts
   namespace: argocd
 spec:
   project: platform
   sources:
-    - repoURL: oci://ghcr.io/argoproj/argo-helm/argo-cd
-      targetRevision: 9.5.17
-      path: .
+    - repoURL: https://argoproj.github.io/argo-helm
+      chart: argo-rollouts
+      targetRevision: 2.41.0
       helm:
-        releaseName: argocd
+        releaseName: argo-rollouts
         valueFiles:
-          - $values/manifests/argocd/values.yaml
+          - $values/manifests/argo-rollouts/values.yaml
     - repoURL: https://github.com/rbomfimpro/gitops-owl
       targetRevision: main
       ref: values
-      path: manifests/argocd
+      path: manifests/argo-rollouts
   syncPolicy:
     automated:
-      prune: false
+      prune: true
       selfHeal: true
-      allowEmpty: false
     syncOptions:
-      - CreateNamespace=false
+      - CreateNamespace=true
       - ServerSideApply=true
+      - PruneLast=true
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: platform

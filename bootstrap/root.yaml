@@ -13,10 +13,10 @@ spec:
         recurse: true
     - repoURL: https://github.com/rbomfimpro/gitops-owl
       targetRevision: main
-      path: applicationsets
-    - repoURL: https://github.com/rbomfimpro/gitops-owl
-      targetRevision: main
       path: projects
+    # - repoURL: https://github.com/rbomfimpro/gitops-owl
+    #   targetRevision: main
+    #   path: applicationsets
   syncPolicy:
     automated:
       prune: true
