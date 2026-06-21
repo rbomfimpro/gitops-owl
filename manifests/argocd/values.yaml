@@ -91,7 +91,7 @@ server:
     enabled: true
     minReplicas: 2
 
-  # Enable Extension Argo Rollouts 
+  # Enable Argo Rollouts Extension
   extensions:
     enabled: true
     extensionList:
