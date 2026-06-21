@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: podinfov2
+  namespace: argocd
+  labels:
+    version: 6.10.0
+spec:
+  project: workloads
+  source:
+    repoURL: https://github.com/rbomfimpro/gitops-owl
+    targetRevision: main
+    path: manifests/podinfov2
+    kustomize:
+      images:
+        - ghcr.io/stefanprodan/podinfo:6.10.0
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PruneLast=true
+      - RespectIgnoreDifferences=true
+  ignoreDifferences:
+    - group: ""
+      kind: Service
+      jsonPointers:
+        - /spec/selector
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: apps
