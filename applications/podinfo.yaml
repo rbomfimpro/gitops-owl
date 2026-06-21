@@ -4,7 +4,7 @@ metadata:
   name: podinfo
   namespace: argocd
   labels:
-    version: 6.14.0
+    version: 6.13.0
 spec:
   project: workloads
   source:
@@ -13,7 +13,7 @@ spec:
     path: manifests/podinfo
     kustomize:
       images:
-        - ghcr.io/stefanprodan/podinfo:6.14.0
+        - ghcr.io/stefanprodan/podinfo:6.13.0
   syncPolicy:
     automated:
       prune: true
