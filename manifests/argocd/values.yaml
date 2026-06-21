@@ -144,11 +144,14 @@ configs:
       border-bottom: 1px solid var(--owl-border);
     }
 
-    /* ---- Nos do grafo de recursos ---- */
-    .theme-dark .application-resource-tree__node {
-      background-color: var(--owl-surface2) !important;
-      border: 1px solid var(--owl-border) !important;
-      color: var(--owl-text);
+    /* ---- Nos do grafo de recursos ----
+       NAO sobrescrever background: o Argo colore os nos POR TIPO
+       (--pod = ciano, --load-balancer = teal, etc.) e isso e o "destaque".
+       NAO sobrescrever a borda: &.active usa teal para marcar o selecionado.
+       Aqui so reforco o destaque de selecao com o accent de marca. */
+    .theme-dark .application-resource-tree__node.active {
+      border-color: var(--owl-accent) !important;
+      box-shadow: 0 0 0 1px var(--owl-accent) !important;
     }
 
     /* ---- Tabelas ---- */
