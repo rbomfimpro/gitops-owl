@@ -85,6 +85,63 @@ configs:
       # g, your-org:platform-engineers, role:poweruser
       # g, your-org:sre,                role:operator
       # g, your-org:staff,              role:viewer
+
+  # =========================================================================
+  # CUSTOM UI STYLES — correções do tema dark (escopadas em .theme-dark)
+  # Foco: aba da extensão de Rollouts, que quase não tem estilo dark
+  # (a extensão só define .revision=#999999 e .info=#555555, daí o contraste ruim).
+  # Selectors verificados no fonte de argo-rollouts/ui e rollout-extension.
+  # Ajuste as cores da paleta abaixo a gosto.
+  # =========================================================================
+  styles: |-
+    .theme-dark {
+      --owl-card:    #25272e;  /* base dos cards */
+      --owl-card-2:  #2e3038;  /* elevado */
+      --owl-border:  #3a3d47;
+      --owl-text:    #dcdee3;
+      --owl-text-dim:#9ea1ab;
+    }
+
+    /* Revision card: extensao forca cinza claro (#999999) -> escurece */
+    .theme-dark .revision {
+      background: var(--owl-card) !important;
+      border: 1px solid var(--owl-border);
+      color: var(--owl-text);
+    }
+
+    /* Bloco "info" (#555555 na extensao) e itens de info */
+    .theme-dark .info,
+    .theme-dark .info-item {
+      background-color: var(--owl-card-2) !important;
+      color: var(--owl-text);
+    }
+
+    /* Containers / imagem / steps / pods: fundo transparente, texto legivel */
+    .theme-dark .containers,
+    .theme-dark .image,
+    .theme-dark .steps,
+    .theme-dark .pods {
+      background: transparent;
+      color: var(--owl-text);
+    }
+
+    /* Texto secundario (tag de imagem, metadados) mais suave */
+    .theme-dark .rollout .image,
+    .theme-dark .revision .info-item {
+      color: var(--owl-text-dim);
+    }
+
+    /* Analise: mantem acento semantico (success/failure/pending), base escura */
+    .theme-dark .analysis {
+      background: var(--owl-card-2);
+      border-color: var(--owl-border);
+    }
+
+    /* Botoes de acao (promote/abort) legiveis no dark */
+    .theme-dark .action-button {
+      color: var(--owl-text);
+      border-color: var(--owl-border);
+    }
 server:
   # HA mode with autoscaling
   autoscaling:
