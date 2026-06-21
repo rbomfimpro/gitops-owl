@@ -87,65 +87,112 @@ configs:
       # g, your-org:staff,              role:viewer
 
   # =========================================================================
-  # CUSTOM UI STYLES — correções do tema dark (escopadas em .theme-dark)
-  # Foco: aba da extensão de Rollouts, que quase não tem estilo dark
-  # (a extensão só define .revision=#999999 e .info=#555555, daí o contraste ruim).
-  # Selectors verificados no fonte de argo-rollouts/ui e rollout-extension.
-  # Ajuste as cores da paleta abaixo a gosto.
+  # CUSTOM UI STYLES — tema dark coeso para a UI core do Argo CD
+  # (escopado em .theme-dark, nao afeta o modo claro).
+  # O tema do Argo CD e SCSS compile-time (sem vars de runtime), entao isto
+  # sobrescreve as superficies principais com uma paleta unica. Selectors
+  # reais: .white-box .sidebar .flex-top-bar .application-status-panel
+  # .argo-button .tabs .argo-dropdown .sliding-panel .argo-table-list__row.
+  # Ajuste tudo na paleta --owl-* abaixo (um lugar so).
   # =========================================================================
   styles: |-
     .theme-dark {
-      --owl-card:    #25272e;  /* base dos cards */
-      --owl-card-2:  #2e3038;  /* elevado */
-      --owl-border:  #3a3d47;
-      --owl-text:    #dcdee3;
-      --owl-text-dim:#9ea1ab;
+      --owl-bg:       #14161b;  /* fundo base da app (era #100f0f, muito duro) */
+      --owl-surface:  #1b1e24;  /* paineis / white-box */
+      --owl-surface2: #22262e;  /* elevado: dropdowns, inputs, nos */
+      --owl-surface3: #2a2f38;  /* hover / ativo */
+      --owl-border:   #2e333d;  /* bordas e divisores unificados */
+      --owl-text:     #e3e6ea;  /* texto primario */
+      --owl-text-dim: #969ca7;  /* texto secundario */
+      --owl-accent:   #1fbdd0;  /* teal de marca do Argo */
     }
 
-    /* Revision card: extensao forca cinza claro (#999999) -> escurece */
-    .theme-dark .revision {
-      background: var(--owl-card) !important;
-      border: 1px solid var(--owl-border);
+    /* ---- Fundo geral ---- */
+    .theme-dark .layout,
+    .theme-dark .page,
+    .theme-dark .page__content,
+    .theme-dark .application-details {
+      background-color: var(--owl-bg) !important;
+    }
+
+    /* ---- Paineis (white-box e a classe de painel mais usada) ---- */
+    .theme-dark .white-box,
+    .theme-dark .argo-container,
+    .theme-dark .application-status-panel,
+    .theme-dark .editable-panel,
+    .theme-dark .filters-group__panel,
+    .theme-dark .resource-details__header {
+      background-color: var(--owl-surface) !important;
+      border-color: var(--owl-border) !important;
       color: var(--owl-text);
     }
 
-    /* Bloco "info" (#555555 na extensao) e itens de info */
-    .theme-dark .info,
-    .theme-dark .info-item {
-      background-color: var(--owl-card-2) !important;
+    /* ---- Sidebar ---- */
+    .theme-dark .sidebar {
+      background-color: var(--owl-surface) !important;
+      border-right: 1px solid var(--owl-border);
+    }
+    .theme-dark .sidebar__nav-item:hover {
+      background-color: var(--owl-surface3) !important;
+    }
+
+    /* ---- Top bar ---- */
+    .theme-dark .flex-top-bar,
+    .theme-dark .top-bar,
+    .theme-dark .top-bar__title {
+      background-color: var(--owl-surface) !important;
+      border-bottom: 1px solid var(--owl-border);
+    }
+
+    /* ---- Nos do grafo de recursos ---- */
+    .theme-dark .application-resource-tree__node {
+      background-color: var(--owl-surface2) !important;
+      border: 1px solid var(--owl-border) !important;
       color: var(--owl-text);
     }
 
-    /* Containers / imagem / steps / pods: fundo transparente, texto legivel */
-    .theme-dark .containers,
-    .theme-dark .image,
-    .theme-dark .steps,
-    .theme-dark .pods {
-      background: transparent;
+    /* ---- Tabelas ---- */
+    .theme-dark .argo-table-list__row {
+      background-color: var(--owl-surface) !important;
+      border-color: var(--owl-border) !important;
+    }
+    .theme-dark .argo-table-list__row:hover {
+      background-color: var(--owl-surface3) !important;
+    }
+
+    /* ---- Dropdowns / paineis deslizantes / inputs ---- */
+    .theme-dark .argo-dropdown__content,
+    .theme-dark .sliding-panel,
+    .theme-dark .sliding-panel__body {
+      background-color: var(--owl-surface2) !important;
+      color: var(--owl-text);
+    }
+    .theme-dark .argo-field,
+    .theme-dark input[type='text'],
+    .theme-dark select,
+    .theme-dark textarea {
+      background-color: var(--owl-surface2) !important;
+      border-color: var(--owl-border) !important;
       color: var(--owl-text);
     }
 
-    /* Texto secundario (tag de imagem, metadados) mais suave */
-    .theme-dark .rollout .image,
-    .theme-dark .revision .info-item {
-      color: var(--owl-text-dim);
+    /* ---- Botoes secundarios (outline). Primarios/coloridos ficam intactos ---- */
+    .theme-dark .argo-button--base-o {
+      background-color: var(--owl-surface2) !important;
+      border-color: var(--owl-border) !important;
+      color: var(--owl-text) !important;
+    }
+    .theme-dark .argo-button--base-o:hover {
+      background-color: var(--owl-surface3) !important;
     }
 
-    /* Analise: mantem acento semantico (success/failure/pending), base escura */
-    .theme-dark .analysis {
-      background: var(--owl-card-2);
-      border-color: var(--owl-border);
+    /* ---- Abas: indicador ativo no accent de marca ---- */
+    .theme-dark .tabs__nav-item.active {
+      color: var(--owl-accent) !important;
+      border-bottom-color: var(--owl-accent) !important;
     }
 
-    /* Botoes de acao (promote/abort) legiveis no dark */
-    .theme-dark .action-button {
-      color: var(--owl-text);
-      border-color: var(--owl-border);
-    }
-
-    /* Logs no dark: remove o fundo branco atras do texto da linha.
-       A linha e .noscroll > code > span; o branco vem de um estilo
-       global de <code> que o tema dark nao sobrescreve. */
+    /* ---- Logs no dark: remove fundo branco atras do texto da linha ---- */
     .theme-dark .noscroll code,
     .theme-dark .noscroll code span {
       background-color: transparent !important;
