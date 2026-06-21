@@ -22,11 +22,12 @@ spec:
       - CreateNamespace=true
       - ServerSideApply=true
       - PruneLast=true
+      - RespectIgnoreDifferences=true
   ignoreDifferences:
     - group: ""
       kind: Service
-      managedFieldsManagers:
-        - argo-rollouts
+      jsonPointers:
+        - /spec/selector
   destination:
     server: https://kubernetes.default.svc
     namespace: apps
