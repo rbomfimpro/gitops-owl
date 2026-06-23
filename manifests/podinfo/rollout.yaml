@@ -11,6 +11,10 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/name: podinfo
+      annotations:
+        prometheus.io/scrape: true
+        prometheus.io/port: "9898"
+        prometheus.io/path: "/metrics"
     spec:
       containers:
       - name: podinfo
